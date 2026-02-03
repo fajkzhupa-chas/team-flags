@@ -1,81 +1,64 @@
-# Team Flags EDU - Production-Grade Dockerfile
-# Multi-stage build for optimal image size and security
-# This Dockerfile demonstrates DevSecOps best practices
-
-# ============================================
 # Stage 1: Dependencies
-# ============================================
 FROM node:20-alpine AS deps
 WORKDIR /app
-
-# Install dependencies only when needed
-# Using npm ci ensures reproducible builds
 COPY package.json package-lock.json* ./
 RUN npm ci
 
-# ============================================
 # Stage 2: Builder
-# ============================================
 FROM node:20-alpine AS builder
 WORKDIR /app
-
-# Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
-
-# Copy application source
 COPY . .
 
-# Set production environment
+# --- VIKTIGT: Miljövariabler för att klara bygget ---
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-
-# Set dummy build-time environment variables
-# These are only used during build and won't be in the final image
-ENV MONGODB_URI=mongodb://localhost:27017
+ENV SKIP_ENV_VALIDATION=true
+ENV MONGODB_URI=mongodb://localhost:27017/dummy
 ENV MONGODB_DB=team-flags-edu
 ENV STUDENTS_COLLECTION=students
+# Denna rad fixar "project_id"-felet
+ENV FIREBASE_SERVICE_ACCOUNT='{"project_id": "nordtech-dummy"}'
+
+# --- MASTER FIX FÖR BUILD-FEL ---
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV SKIP_ENV_VALIDATION=true
 
-# Build the Next.js application
-# This creates an optimized production build
+# MongoDB dummy-värden
+ENV MONGODB_URI=mongodb://localhost:27017/dummy
+ENV MONGODB_DB=team-flags-edu
+ENV STUDENTS_COLLECTION=students
+
+# Firebase dummy-värden - vi lägger till flera namn för säkerhets skull
+ENV FIREBASE_SERVICE_ACCOUNT='{"project_id": "nordtech-dummy"}'
+ENV FIREBASE_ADMIN_SERVICE_ACCOUNT='{"project_id": "nordtech-dummy"}'
+ENV GOOGLE_PROJECT_ID="nordtech-dummy"
+ENV NEXT_PUBLIC_FIREBASE_PROJECT_ID="nordtech-dummy"
+# --------------------------------
+
 RUN npm run build
 
-# ============================================
-# Stage 3: Runner (Final Production Image)
-# ============================================
+# Stage 3: Runner (Den slutgiltiga, säkra imagen)
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-# Security: Create a non-root user
-# Running as root is a security risk
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Set production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy only necessary files from builder
-# This keeps the final image small
+# Kopiera endast det som behövs för att köra appen
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next.config.ts ./next.config.ts
-
-# Copy Next.js standalone build
-# Standalone mode creates a minimal production build
+COPY --from=builder /app/next.config.ts ./next.config.ts 2>/dev/null || COPY --from=builder /app/next.config.js ./next.config.js 2>/dev/null
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Security: Switch to non-root user
 USER nextjs
-
-# Expose port 3000
 EXPOSE 3000
-
-# Set hostname to allow external connections
 ENV HOSTNAME="0.0.0.0"
 ENV PORT=3000
 
-# Start the Next.js application
-# Standalone mode uses server.js directly
 CMD ["node", "server.js"]

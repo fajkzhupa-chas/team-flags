@@ -1,8 +1,12 @@
-# Tuesday Boiler Room - Week 2: From Zero to Container
+# Week 2: Single Container - From Zero to Container
 
-**Date**: Vecka 2, Tisdag 08:00-11:00
-**Goal**: Everyone has the Team Flags app running in a Docker container
-**Prerequisites**: Docker installed (from Monday's self-study)
+> **📚 Navigation:** [Docs Index](README.md) | **Week 2: Single Container** | [Week 3: Docker Compose](WEEK3_BOILER_ROOM.md) | [Troubleshooting](TROUBLESHOOTING.md)
+
+**Goal**: Get the Team Flags app running in a Docker container
+
+**Prerequisites**: Docker Desktop installed
+
+**Next Step**: After completing this, continue to [Week 3: Docker Compose](WEEK3_BOILER_ROOM.md)
 
 ---
 

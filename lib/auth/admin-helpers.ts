@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { adminAuth } from '@/lib/firebase/admin';
+import { adminAuth, isFirebaseAdminAvailable } from '@/lib/firebase/admin';
 import { getDatabase } from '@/lib/mongodb';
 
 export interface AdminAuthResult {
@@ -11,8 +11,19 @@ export interface AdminAuthResult {
 /**
  * Verify if the current user is an admin
  * Returns the user's email if they are an admin, null otherwise
+ *
+ * Note: Returns error if Firebase Admin is not configured.
+ * For Week 2-4, authentication is optional - focus on Docker/CI/CD.
  */
 export async function verifyAdmin(): Promise<AdminAuthResult> {
+  // Check if Firebase Admin is available
+  if (!isFirebaseAdminAvailable() || !adminAuth) {
+    return {
+      success: false,
+      error: 'Firebase Admin not configured - auth disabled for development',
+    };
+  }
+
   try {
     // Get session cookie
     const cookieStore = await cookies();

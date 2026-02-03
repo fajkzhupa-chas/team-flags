@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic'; //
 import { NextRequest, NextResponse } from 'next/server';
-import { adminAuth } from '@/lib/firebase/admin';
+import { adminAuth, isFirebaseAdminAvailable } from '@/lib/firebase/admin';
 import { cookies } from 'next/headers';
 
 const SESSION_COOKIE_NAME = 'session';
@@ -8,6 +8,17 @@ const SESSION_COOKIE_MAX_AGE = 60 * 60 * 24 * 5; // 5 days in seconds
 
 // POST - Create session cookie from Firebase ID token
 export async function POST(request: NextRequest) {
+  // Check if Firebase is configured
+  if (!isFirebaseAdminAvailable() || !adminAuth) {
+    return NextResponse.json(
+      {
+        error: 'Authentication not configured',
+        message: 'Firebase Admin SDK is not set up. This is OK for Week 2-4 - focus on Docker concepts!',
+      },
+      { status: 503 }
+    );
+  }
+
   try {
     const { idToken } = await request.json();
 

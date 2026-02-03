@@ -1,10 +1,23 @@
 # Vecka 3: Docker Compose - Multi-Container Setup
 
-> **📚 Navigation:** [Docs Index](README.md) | [Vecka 2: Single Container](WEEK2_SINGLE_CONTAINER.md) | **Vecka 3: Docker Compose** | [Felsökning](TROUBLESHOOTING.md)
+> **🚀 STARTA HÄR → [Öppna team-flags på GitHub](https://github.com/r87-e/team-flags)**
+>
+> All kod, dokumentation och instruktioner finns i repot. Forka och klona för att komma igång!
+
+---
+
+| 📚 Dokumentation | 🔗 Länk |
+|------------------|---------|
+| **Huvudrepo** | [github.com/r87-e/team-flags](https://github.com/r87-e/team-flags) |
+| Vecka 2: Single Container | [WEEK2_SINGLE_CONTAINER.md](https://github.com/r87-e/team-flags/blob/main/docs/WEEK2_SINGLE_CONTAINER.md) |
+| **Vecka 3: Docker Compose** | [WEEK3_BOILER_ROOM_SV.md](https://github.com/r87-e/team-flags/blob/main/docs/WEEK3_BOILER_ROOM_SV.md) |
+| Felsökning | [TROUBLESHOOTING.md](https://github.com/r87-e/team-flags/blob/main/docs/TROUBLESHOOTING.md) |
+
+---
 
 **Mål:** Orkestrera en 3-tjänst applikation med Docker Compose
 
-**Förkunskaper:** Slutfört [Vecka 2](WEEK2_SINGLE_CONTAINER.md), eller ha grundläggande Docker-kunskaper.
+**Förkunskaper:** Slutfört Vecka 2, eller ha grundläggande Docker-kunskaper.
 
 ---
 
@@ -720,8 +733,8 @@ Innan du avslutar, se till att du:
 
 ## Behöver Du Hjälp?
 
-- **Något trasigt?** Kolla [Felsökningsguiden](TROUBLESHOOTING.md)
-- **Repetera grunder?** Gå tillbaka till [Vecka 2: Single Container](WEEK2_SINGLE_CONTAINER.md)
+- **Något trasigt?** Kolla [Felsökningsguiden på GitHub](https://github.com/r87-e/team-flags/blob/main/docs/TROUBLESHOOTING.md)
+- **Repetera grunder?** Gå tillbaka till [Vecka 2 på GitHub](https://github.com/r87-e/team-flags/blob/main/docs/WEEK2_SINGLE_CONTAINER.md)
 - **Redo för mer?** Fortsätt till Vecka 4: CI/CD Pipeline (kommer snart)
 
 ---
@@ -730,4 +743,4 @@ Innan du avslutar, se till att du:
 
 ---
 
-> **📚 Navigation:** [Docs Index](README.md) | [Vecka 2: Single Container](WEEK2_SINGLE_CONTAINER.md) | **Vecka 3: Docker Compose** | [Felsökning](TROUBLESHOOTING.md)
+> **📚 Navigation:** [GitHub Repo](https://github.com/r87-e/team-flags) | [Vecka 2](https://github.com/r87-e/team-flags/blob/main/docs/WEEK2_SINGLE_CONTAINER.md) | **Vecka 3** | [Felsökning](https://github.com/r87-e/team-flags/blob/main/docs/TROUBLESHOOTING.md)

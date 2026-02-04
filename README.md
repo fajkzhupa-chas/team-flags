@@ -23,6 +23,8 @@ Detailed step-by-step guides are in the [`docs/`](docs/) folder:
 |-------|-------------|
 | [Week 2: Single Container](docs/WEEK2_SINGLE_CONTAINER.md) | Docker basics - build and run your first container |
 | [Week 3: Docker Compose](docs/WEEK3_BOILER_ROOM.md) | Multi-container orchestration with nginx, app, and MongoDB |
+| [Week 3: Exploration Lab](docs/WEEK3_EXPLORATION_LAB.md) | Hands-on missions to explore Docker Compose concepts |
+| [Commands Cheat Sheet](docs/COMMANDS_CHEATSHEET.md) | Quick reference for all Docker commands |
 | [Troubleshooting](docs/TROUBLESHOOTING.md) | Common issues and solutions |
 
 ---

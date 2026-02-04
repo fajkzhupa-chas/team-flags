@@ -8,6 +8,8 @@ Learning guides for the Team Flags EDU DevSecOps platform.
 |-------|-------------|-------------|
 | [Week 2: Single Container](WEEK2_SINGLE_CONTAINER.md) | Docker basics, building your first container | Start here if new to Docker |
 | [Week 3: Docker Compose](WEEK3_BOILER_ROOM.md) | Multi-container orchestration | After completing Week 2 |
+| [Week 3: Exploration Lab](WEEK3_EXPLORATION_LAB.md) | Hands-on missions to explore Docker Compose | After Week 3 intro session |
+| [Commands Cheat Sheet](COMMANDS_CHEATSHEET.md) | Quick reference for Docker commands | Keep open while working |
 | [Troubleshooting](TROUBLESHOOTING.md) | Common issues and solutions | When things break |
 
 ## Learning Path
@@ -33,10 +35,14 @@ docs/
 ├── README.md                    # This file - navigation index
 ├── WEEK2_SINGLE_CONTAINER.md    # Week 2: Docker basics
 ├── WEEK3_BOILER_ROOM.md         # Week 3: Docker Compose (main lab)
+├── WEEK3_EXPLORATION_LAB.md     # Week 3: Hands-on exploration missions
+├── COMMANDS_CHEATSHEET.md       # Docker commands quick reference
 └── TROUBLESHOOTING.md           # Common issues & solutions
 ```
 
 ## Quick Commands Reference
+
+**📖 For a complete command reference, see [Commands Cheat Sheet](COMMANDS_CHEATSHEET.md)**
 
 ### Week 2 (Single Container)
 ```bash
